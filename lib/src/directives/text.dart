@@ -1,0 +1,28 @@
+import 'package:angular2/angular2.dart';
+import 'package:kl/src/directives/box.dart';
+import 'package:kl/src/text_style.dart';
+
+@Directive(
+  selector: 'kl-text',
+  inputs: const ['constraint', 'decoration', 'padding', 'margin'],
+)
+class KlText extends KlBox implements OnInit {
+  KlTextStyle _textStyle;
+
+  @Input('textStyle')
+  set textStyle(KlTextStyle value) {
+    _textStyle = value ?? _textStyle;
+  }
+
+  KlText(ElementRef elementRef) : super(elementRef);
+
+  @override
+  void ngOnInit() {
+    super.ngOnInit();
+    element.style
+      ..display = 'block'
+      ..fontFamily = _textStyle?.fontFamily
+      ..fontSize = '${_textStyle?.fontSize}px'
+      ..color = _textStyle?.color?.toStyle();
+  }
+}
