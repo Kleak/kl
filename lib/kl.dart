@@ -10,6 +10,7 @@ export 'package:kl/src/object_fit.dart';
 export 'package:kl/src/justify_content.dart';
 export 'package:kl/src/display.dart';
 export 'package:kl/src/flex_wrap.dart';
+export 'package:kl/src/element.dart';
 
 export 'package:kl/src/directives/box.dart';
 export 'package:kl/src/directives/container.dart';
