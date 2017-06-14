@@ -14,10 +14,6 @@ dev_dependencies:
   browser: ^0.10.0
   dart_to_js_script_rewriter: ^1.0.1
   test: ^0.12.0
-  pub:
-    git:
-      url: https://github.com/jakemac53/pub.git
-      ref: recompute-modules
 
 transformers:
 - angular2:

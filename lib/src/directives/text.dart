@@ -1,5 +1,6 @@
 import 'package:angular2/angular2.dart';
 import 'package:kl/src/directives/box.dart';
+import 'package:kl/src/display.dart';
 import 'package:kl/src/text_style.dart';
 
 @Directive(
@@ -12,17 +13,16 @@ class KlText extends KlBox implements OnInit {
   @Input('textStyle')
   set textStyle(KlTextStyle value) {
     _textStyle = value ?? _textStyle;
+    element.style
+      ..fontFamily = _textStyle?.fontFamily
+      ..fontSize = '${_textStyle?.fontSize}px'
+      ..color = _textStyle?.color?.toStyle();
   }
 
   KlText(ElementRef elementRef) : super(elementRef);
 
   @override
   void ngOnInit() {
-    super.ngOnInit();
-    element.style
-      ..display = 'block'
-      ..fontFamily = _textStyle?.fontFamily
-      ..fontSize = '${_textStyle?.fontSize}px'
-      ..color = _textStyle?.color?.toStyle();
+    display = KlDisplay.block;
   }
 }

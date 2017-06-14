@@ -9,7 +9,8 @@ import 'package:kl/src/directives/container.dart';
     'padding',
     'margin',
     'alignItems',
-    'justifyContent'
+    'justifyContent',
+    'flexWrap'
   ],
 )
 class KlColumn extends KlContainer implements OnInit {

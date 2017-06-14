@@ -9,15 +9,18 @@ import 'package:kl/src/directives/container.dart';
     'padding',
     'margin',
     'alignItems',
-    'justifyContent'
+    'justifyContent',
+    'flexWrap'
   ],
 )
 class KlRow extends KlContainer implements OnInit {
+
+
   KlRow(ElementRef elementRef) : super(elementRef);
 
   @override
   void ngOnInit() {
-    direction = 'row';
     super.ngOnInit();
+    direction = 'row';
   }
 }

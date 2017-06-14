@@ -12,8 +12,11 @@ class KlColor {
 
   const KlColor.fromRGBA(this.red, this.green, this.blue, this.alpha);
 
-  factory KlColor.fromRGB(int red, int green, int blue) =>
-      new KlColor.fromRGBA(red, green, blue, 1);
+  const KlColor.fromRGB(int red, int green, int blue)
+      : red = red,
+        green = green,
+        blue = blue,
+        alpha = 1;
 
   String toStyle() => 'rgba($red, $green, $blue, $alpha)';
 }
