@@ -1,3 +1,4 @@
+import 'package:kl/kl.dart';
 
 export 'package:kl/src/constraint.dart';
 export 'package:kl/src/edge_insets.dart';
@@ -19,3 +20,13 @@ export 'package:kl/src/directives/row.dart';
 export 'package:kl/src/directives/text.dart';
 export 'package:kl/src/directives/flexible.dart';
 export 'package:kl/src/directives/image.dart';
+
+const List<Type> klDirectives = const [
+  KlBox,
+  KlContainer,
+  KlColumn,
+  KlRow,
+  KlText,
+  KlFlexible,
+  KlImage
+];
