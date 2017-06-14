@@ -4,14 +4,13 @@ import 'package:kl/src/element.dart';
 @Directive(
   selector: '[kl-flexible]',
 )
-class KlFlexible extends KlElement implements OnInit {
+class KlFlexible extends KlElement {
   @Input('kl-flexible')
-  String flex;
+  set flex(String value) {
+    if (value != null) {
+      element.style.flex = value;
+    }
+  }
 
   KlFlexible(ElementRef elementRef) : super(elementRef);
-
-  @override
-  void ngOnInit() {
-    element.style.flex = flex;
-  }
 }

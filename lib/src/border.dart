@@ -68,11 +68,11 @@ class KlBoxBorder {
   final KlBorder left;
   final KlBorder right;
 
-  KlBoxBorder.all(KlBorder border)
+  const KlBoxBorder.all(KlBorder border)
       : top = border,
         bottom = border,
         right = border,
         left = border;
 
-  KlBoxBorder.only({this.top, this.right, this.bottom, this.left});
+  const KlBoxBorder.only({this.top, this.right, this.bottom, this.left});
 }
