@@ -12,6 +12,7 @@ export 'package:kl/src/justify_content.dart';
 export 'package:kl/src/display.dart';
 export 'package:kl/src/flex_wrap.dart';
 export 'package:kl/src/element.dart';
+export 'package:kl/src/icon.dart';
 
 export 'package:kl/src/directives/box.dart';
 export 'package:kl/src/directives/container.dart';
@@ -21,6 +22,8 @@ export 'package:kl/src/directives/text.dart';
 export 'package:kl/src/directives/flexible.dart';
 export 'package:kl/src/directives/image.dart';
 
+export 'package:kl/src/components/icon/icon.dart';
+
 const List<Type> klDirectives = const [
   KlBox,
   KlContainer,
@@ -28,5 +31,6 @@ const List<Type> klDirectives = const [
   KlRow,
   KlText,
   KlFlexible,
-  KlImage
+  KlImage,
+  KlIcon,
 ];
