@@ -4,7 +4,7 @@ import 'package:kl/src/directives/box.dart';
 import 'package:kl/src/icon.dart';
 
 @Component(
-  selector: 'al-icon',
+  selector: 'kl-icon',
   templateUrl: 'icon.html',
   styleUrls: const ['icon.css'],
   directives: const <dynamic>[COMMON_DIRECTIVES, SafeInnerHtmlDirective],
@@ -27,6 +27,7 @@ class KlIcon extends KlBox implements OnInit {
       ElementRef elementRef, this._changeDetectorRef, this._domSecurityService)
       : super(elementRef);
 
+  @override
   void ngOnInit() {
     if (icon != null) {
       html = _domSecurityService.bypassSecurityTrustHtml(icon.data);

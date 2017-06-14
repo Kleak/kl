@@ -44,7 +44,6 @@ class KlContainer extends KlBox implements OnInit {
   @override
   void ngOnInit() {
     display = KlDisplay.flex;
-    alignItems = KlAlignItem.start;
     direction = 'column';
   }
 }

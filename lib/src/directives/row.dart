@@ -14,8 +14,6 @@ import 'package:kl/src/directives/container.dart';
   ],
 )
 class KlRow extends KlContainer implements OnInit {
-
-
   KlRow(ElementRef elementRef) : super(elementRef);
 
   @override
