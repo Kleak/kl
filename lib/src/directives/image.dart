@@ -30,7 +30,6 @@ class KlImage extends KlBox implements OnDestroy {
     _src = value ?? _src;
     if (_src != null) {
       _updateSource();
-
     }
   }
 
@@ -63,6 +62,9 @@ class KlImage extends KlBox implements OnDestroy {
         break;
       case 'image/png':
         data = "data:image/png;base64,${_bytesToBase64(response.bodyBytes)}";
+        break;
+      case 'image/jpeg':
+        data = 'data:image/jpeg;base64,${_bytesToBase64(response.bodyBytes)}';
         break;
     }
     _onLoadFinish.add(null);
