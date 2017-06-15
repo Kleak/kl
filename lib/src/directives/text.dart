@@ -4,7 +4,7 @@ import 'package:kl/src/display.dart';
 import 'package:kl/src/text_style.dart';
 
 @Directive(
-  selector: 'kl-text',
+  selector: 'kl-text,[kl-text]',
   inputs: const ['constraint', 'decoration', 'padding', 'margin'],
 )
 class KlText extends KlBox implements OnInit {
