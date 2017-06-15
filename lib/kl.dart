@@ -23,6 +23,7 @@ export 'package:kl/src/directives/flexible.dart';
 export 'package:kl/src/directives/image.dart';
 
 export 'package:kl/src/components/icon/icon.dart';
+export 'package:kl/src/components/select/select.dart';
 
 const List<Type> klDirectives = const [
   KlBox,
@@ -33,4 +34,5 @@ const List<Type> klDirectives = const [
   KlFlexible,
   KlImage,
   KlIcon,
+  KlSelect,
 ];
