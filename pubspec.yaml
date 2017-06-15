@@ -8,6 +8,7 @@ environment:
 dependencies:
   angular2: ^3.0.0
   http: ^0.11.3+13
+  meta: ^1.0.5
 
 dev_dependencies:
   angular_test: ^1.0.0-beta+2
