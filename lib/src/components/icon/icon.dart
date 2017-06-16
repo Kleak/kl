@@ -1,5 +1,6 @@
 import 'package:angular2/angular2.dart';
 import 'package:angular2/security.dart';
+import 'package:kl/src/color.dart';
 import 'package:kl/src/directives/box.dart';
 import 'package:kl/src/icon.dart';
 
@@ -19,7 +20,7 @@ class KlIcon extends KlBox implements OnInit {
   Icon icon;
 
   @Input('fill')
-  String fill = 'white';
+  KlColor fill;
 
   SafeHtml html;
 
