@@ -58,15 +58,19 @@ class KlImage extends KlBox implements OnDestroy {
     switch (response.headers['content-type']) {
       case 'image/svg+xml':
         data =
-            "data:image/svg+xml;base64,${_bytesToBase64(response.bodyBytes)}";
+            "data:image/svg+xml;base64,";
         break;
       case 'image/png':
-        data = "data:image/png;base64,${_bytesToBase64(response.bodyBytes)}";
+        data = "data:image/png;base64,";
         break;
       case 'image/jpeg':
-        data = 'data:image/jpeg;base64,${_bytesToBase64(response.bodyBytes)}';
+        data = 'data:image/jpeg;base64,';
+        break;
+      case 'image/webp':
+        data = 'data:image/webp;base64,';
         break;
     }
+    data += _bytesToBase64(response.bodyBytes);
     _onLoadFinish.add(null);
     _updatSrc(data);
   }
