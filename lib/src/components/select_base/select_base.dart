@@ -2,17 +2,17 @@ import 'dart:async';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 
-class AlSelectItem {
+class KlSelectItem {
   final String id;
   final String value;
 
-  AlSelectItem(this.id, this.value);
+  KlSelectItem(this.id, this.value);
 
   @override
   String toString() => "$id $value";
 }
 
-enum AlSelectType {
+enum KlSelectType {
   none,
   onlyOne,
   multiple,
@@ -23,14 +23,14 @@ enum AlSelectType {
 )
 class KlSelectBase implements OnDestroy {
   final ChangeDetectorRef _changeDetectorRef;
-  List<AlSelectItem> _items = [];
-  List<AlSelectItem> _selectedItems = [];
-  AlSelectType _type = AlSelectType.none;
+  List<KlSelectItem> _items = [];
+  List<KlSelectItem> _selectedItems = [];
+  KlSelectType _type = KlSelectType.none;
 
-  StreamController<AlSelectItem> onSelectItemController;
+  StreamController<KlSelectItem> onSelectItemController;
 
   @Input('type')
-  set type(AlSelectType type) {
+  set type(KlSelectType type) {
     _type = type ?? _type;
     if (type != null) {
       _changeDetectorRef.markForCheck();
@@ -38,7 +38,7 @@ class KlSelectBase implements OnDestroy {
   }
 
   @Input('items')
-  set items(List<AlSelectItem> items) {
+  set items(List<KlSelectItem> items) {
     _items = items ?? _items;
     if (items != null) {
       _changeDetectorRef.markForCheck();
@@ -46,7 +46,7 @@ class KlSelectBase implements OnDestroy {
   }
 
   @Input('selectedItems')
-  set selectedItems(List<AlSelectItem> selectedItems) {
+  set selectedItems(List<KlSelectItem> selectedItems) {
     _selectedItems = selectedItems ?? _selectedItems;
     if (selectedItems != null) {
       _changeDetectorRef.markForCheck();
@@ -57,29 +57,29 @@ class KlSelectBase implements OnDestroy {
     onSelectItemController = new StreamController();
   }
 
-  bool get isNone => _type == AlSelectType.none;
-  List<AlSelectItem> get items => _items;
-  List<AlSelectItem> get selectedItems => _selectedItems;
-  AlSelectType get type => _type;
+  bool get isNone => _type == KlSelectType.none;
+  List<KlSelectItem> get items => _items;
+  List<KlSelectItem> get selectedItems => _selectedItems;
+  KlSelectType get type => _type;
 
   @Output('selectItem')
-  Stream<AlSelectItem> get onSelectItem => onSelectItemController.stream;
+  Stream<KlSelectItem> get onSelectItem => onSelectItemController.stream;
 
   void ngOnDestroy() {
     onSelectItemController?.close();
   }
 
-  void selectBaseItem(MouseEvent event, AlSelectItem item) {
+  void selectBaseItem(MouseEvent event, KlSelectItem item) {
     event.stopPropagation();
     onSelectItemController.add(item);
   }
 
-  bool isSelected(AlSelectItem item) {
+  bool isSelected(KlSelectItem item) {
     if (isNone) {
       return false;
     }
     return _selectedItems.firstWhere(
-            (AlSelectItem selectedItem) => selectedItem.id == item.id,
+            (KlSelectItem selectedItem) => selectedItem.id == item.id,
             orElse: () => null) !=
         null;
   }
