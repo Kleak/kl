@@ -15,7 +15,6 @@ class KlText extends KlBox implements OnInit {
     ctx.font = "${textStyle.fontSize}px ${textStyle.fontFamily}";
     final metric = ctx.measureText(text);
     return metric.width;
-
   }
 
   KlTextStyle _textStyle;
