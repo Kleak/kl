@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:kl/src/directives/box.dart';
 import 'package:kl/src/display.dart';
@@ -8,6 +9,15 @@ import 'package:kl/src/text_style.dart';
   inputs: const ['constraint', 'decoration', 'padding', 'margin'],
 )
 class KlText extends KlBox implements OnInit {
+  static double getTextWidth(KlTextStyle textStyle, String text) {
+    final canvas = new CanvasElement();
+    final ctx = canvas.context2D;
+    ctx.font = "${textStyle.fontSize}px ${textStyle.fontFamily}";
+    final metric = ctx.measureText(text);
+    return metric.width;
+
+  }
+
   KlTextStyle _textStyle;
 
   @Input('textStyle')
