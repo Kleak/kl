@@ -6,7 +6,7 @@ class KlSelectItem {
   final String id;
   final String value;
 
-  KlSelectItem(this.id, this.value);
+  const KlSelectItem(this.id, this.value);
 
   @override
   String toString() => "$id $value";
