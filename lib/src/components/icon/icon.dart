@@ -1,8 +1,10 @@
 import 'package:angular2/angular2.dart';
 import 'package:angular2/security.dart';
+import 'package:kl/src/align_item.dart';
 import 'package:kl/src/color.dart';
 import 'package:kl/src/directives/row.dart';
 import 'package:kl/src/icon.dart';
+import 'package:kl/src/justify_content.dart';
 
 @Component(
   selector: 'kl-icon',
@@ -35,7 +37,10 @@ class KlIcon extends KlRow implements OnInit {
 
   KlIcon(
       ElementRef elementRef, this._changeDetectorRef, this._domSecurityService)
-      : super(elementRef);
+      : super(elementRef) {
+    alignItems = KlAlignItem.center;
+    justifyContent = KlJustifyContent.center;
+  }
 
   @override
   void ngOnInit() {
