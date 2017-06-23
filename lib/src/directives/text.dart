@@ -26,7 +26,8 @@ class KlText extends KlBox implements OnInit {
       ..fontFamily = _textStyle?.fontFamily
       ..fontSize = '${_textStyle?.fontSize}px'
       ..color = _textStyle?.color?.toStyle()
-      ..textTransform = _textStyle?.textTransform?.toStyle();
+      ..textTransform = _textStyle?.textTransform?.toStyle()
+      ..textDecoration = _textStyle?.textDecoration?.toStyle();
   }
 
   KlText(ElementRef elementRef) : super(elementRef);
