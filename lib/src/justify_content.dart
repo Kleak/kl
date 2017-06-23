@@ -1,4 +1,5 @@
 enum _KlJjustifyContent {
+  unset,
   flexStart,
   flexEnd,
   center,
@@ -8,6 +9,7 @@ enum _KlJjustifyContent {
 }
 
 class KlJustifyContent {
+  static const KlJustifyContent unset = const KlJustifyContent._(_KlJjustifyContent.unset);
   static const KlJustifyContent flexStart =
       const KlJustifyContent._(_KlJjustifyContent.flexStart);
   static const KlJustifyContent flexEnd =
@@ -39,6 +41,8 @@ class KlJustifyContent {
         return 'space-between';
       case _KlJjustifyContent.spaceEvenly:
         return 'space-evenly';
+      case _KlJjustifyContent.unset:
+        return 'unset';
       default:
         return 'unset';
     }
