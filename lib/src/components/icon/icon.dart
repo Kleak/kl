@@ -1,7 +1,7 @@
 import 'package:angular2/angular2.dart';
 import 'package:angular2/security.dart';
 import 'package:kl/src/color.dart';
-import 'package:kl/src/directives/box.dart';
+import 'package:kl/src/directives/row.dart';
 import 'package:kl/src/icon.dart';
 
 @Component(
@@ -9,10 +9,19 @@ import 'package:kl/src/icon.dart';
   templateUrl: 'icon.html',
   styleUrls: const ['icon.css'],
   directives: const <dynamic>[COMMON_DIRECTIVES, SafeInnerHtmlDirective],
-  inputs: const ['display', 'constraint', 'decoration', 'padding', 'margin'],
+  inputs: const [
+    'display',
+    'constraint',
+    'decoration',
+    'padding',
+    'margin',
+    'alignItems',
+    'justifyContent',
+    'flexWrap'
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
-class KlIcon extends KlBox implements OnInit {
+class KlIcon extends KlRow implements OnInit {
   final ChangeDetectorRef _changeDetectorRef;
   final DomSanitizationService _domSecurityService;
 
@@ -30,6 +39,7 @@ class KlIcon extends KlBox implements OnInit {
 
   @override
   void ngOnInit() {
+    super.ngOnInit();
     if (icon != null) {
       html = _domSecurityService.bypassSecurityTrustHtml(icon.data);
       _changeDetectorRef.markForCheck();
