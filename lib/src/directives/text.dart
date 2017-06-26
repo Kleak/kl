@@ -1,14 +1,13 @@
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:kl/src/directives/box.dart';
-import 'package:kl/src/display.dart';
 import 'package:kl/src/text_style.dart';
 
 @Directive(
   selector: 'kl-text,[kl-text]',
-  inputs: const ['constraint', 'decoration', 'padding', 'margin'],
+  inputs: const ['constraint', 'decoration', 'padding', 'margin', 'display'],
 )
-class KlText extends KlBox implements OnInit {
+class KlText extends KlBox {
   static double getTextWidth(KlTextStyle textStyle, String text) {
     final canvas = new CanvasElement();
     final ctx = canvas.context2D;
@@ -32,9 +31,4 @@ class KlText extends KlBox implements OnInit {
   }
 
   KlText(ElementRef elementRef) : super(elementRef);
-
-  @override
-  void ngOnInit() {
-    display = KlDisplay.block;
-  }
 }
