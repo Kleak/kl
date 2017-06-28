@@ -19,7 +19,7 @@ enum KlSelectType {
 }
 
 @Component(
-  selector: 'akl-select-base',
+  selector: 'kl-select-base',
 )
 class KlSelectBase implements OnDestroy {
   final ChangeDetectorRef _changeDetectorRef;
