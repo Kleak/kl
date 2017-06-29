@@ -24,6 +24,8 @@ class KlAlignItem {
         return 'start';
       case _KlAlignItem.end:
         return 'end';
+      case _KlAlignItem.baseline:
+        return 'baseline';
       case _KlAlignItem.stretch:
         return 'stretch';
       case _KlAlignItem.center:

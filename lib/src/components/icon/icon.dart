@@ -12,14 +12,9 @@ import 'package:kl/src/justify_content.dart';
   styleUrls: const ['icon.css'],
   directives: const <dynamic>[COMMON_DIRECTIVES, SafeInnerHtmlDirective],
   inputs: const [
-    'display',
-    'constraint',
     'decoration',
     'padding',
     'margin',
-    'alignItems',
-    'justifyContent',
-    'flexWrap'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
@@ -29,6 +24,12 @@ class KlIcon extends KlRow implements OnInit {
 
   @Input('icon')
   Icon icon;
+
+  @Input('width')
+  String width;
+
+  @Input('height')
+  String height;
 
   @Input('fill')
   KlColor fill;
@@ -47,6 +48,12 @@ class KlIcon extends KlRow implements OnInit {
     super.ngOnInit();
     if (icon != null) {
       html = _domSecurityService.bypassSecurityTrustHtml(icon.data);
+      if (width == null) {
+        width = icon.defaultWidth;
+      }
+      if (height == null) {
+        height = icon.defaultHeight;
+      }
       _changeDetectorRef.markForCheck();
     }
   }
