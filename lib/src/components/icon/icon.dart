@@ -15,6 +15,8 @@ import 'package:kl/src/justify_content.dart';
     'decoration',
     'padding',
     'margin',
+    'constraint',
+    'justifyContent',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
