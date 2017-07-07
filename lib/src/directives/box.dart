@@ -35,7 +35,8 @@ class KlBox extends KlElement {
   set decoration(KlDecoration value) {
     _decoration = value ?? _decoration;
     element.style
-      ..borderRadius = '${_decoration?.borderRadius}px'
+      ..borderRadius =
+          _decoration == null ? 'none' : '${_decoration?.borderRadius}px'
       ..backgroundColor = _decoration?.backgroundColor?.toStyle()
       ..borderTop = _decoration?.border?.top?.toStyle()
       ..borderRight = _decoration?.border?.right?.toStyle()
