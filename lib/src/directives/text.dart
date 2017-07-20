@@ -24,6 +24,7 @@ class KlText extends KlBox {
     element.style
       ..fontFamily = _textStyle?.fontFamily
       ..fontSize = '${_textStyle?.fontSize}px'
+      ..fontWeight = _textStyle?.fontWeight
       ..color = _textStyle?.color?.toStyle()
       ..textTransform = _textStyle?.textTransform?.toStyle()
       ..textAlign = _textStyle?.textAlign?.toStyle()

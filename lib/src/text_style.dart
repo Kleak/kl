@@ -102,6 +102,7 @@ class KlTextAlign {
 class KlTextStyle {
   final String fontFamily;
   final int fontSize;
+  final String fontWeight;
   final KlColor color;
   final KlTextTransform textTransform;
   final KlTextDecoration textDecoration;
@@ -110,6 +111,7 @@ class KlTextStyle {
   const KlTextStyle(
       {this.fontFamily,
       this.fontSize,
+      this.fontWeight,
       this.color,
       this.textTransform,
       this.textDecoration,
