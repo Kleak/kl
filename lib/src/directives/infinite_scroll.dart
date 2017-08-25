@@ -18,7 +18,7 @@ import 'package:kl/src/directives/container.dart';
   ],
 )
 class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
-  final StreamController<Null> _fireScrollEnd = new StreamController();
+  final StreamController<Null> _scrollEndController = new StreamController();
   StreamSubscription<Event> _scrollSubscription;
   Element _source;
   bool _disabled = false;
@@ -48,7 +48,7 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   }
 
   @Output('scrollEnd')
-  Stream<Null> get onScrollEnd => _fireScrollEnd.stream;
+  Stream<Null> get onScrollEnd => _scrollEndController.stream;
 
   @override
   void ngOnInit() {
@@ -57,7 +57,7 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
 
   @override
   void ngOnDestroy() {
-    _fireScrollEnd?.close();
+    _scrollEndController?.close();
     _scrollSubscription?.cancel();
   }
 
@@ -65,7 +65,7 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
     if (!_disabled) {
       final alreadyScrolled = _alreadyScrolled();
       if (alreadyScrolled > threshold) {
-        _fireScrollEnd.add(null);
+        _scrollEndController.add(null);
       }
     }
   }
