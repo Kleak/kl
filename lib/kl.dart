@@ -21,6 +21,7 @@ export 'package:kl/src/directives/row.dart';
 export 'package:kl/src/directives/text.dart';
 export 'package:kl/src/directives/flexible.dart';
 export 'package:kl/src/directives/image.dart';
+export 'package:kl/src/directives/infinite_scroll.dart';
 
 export 'package:kl/src/components/icon/icon.dart';
 export 'package:kl/src/components/select_base/select_base.dart';
