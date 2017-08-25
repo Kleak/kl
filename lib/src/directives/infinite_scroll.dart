@@ -24,8 +24,8 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   @Input('threshold')
   int threshold = 80;
 
-  @Input('fireEvent')
-  bool fireEvent = true;
+  @Input('disabled')
+  bool fireEvent = false;
 
   KlInfiniteScroll(ElementRef elementRef) : super(elementRef);
 
@@ -45,7 +45,7 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   }
 
   void _onScroll(Event event) {
-    if (fireEvent) {
+    if (!fireEvent) {
       final alreadyScrolled =
           ((window.scrollY + document.body.clientHeight) * 100) /
               document.documentElement.scrollHeight;
