@@ -39,7 +39,6 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   @Input('source')
   set source(Element s) {
     _source = s;
-    _scrollSubscription?.cancel();
     _setScrollSubscription();
   }
 
@@ -71,6 +70,7 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   }
 
   void _setScrollSubscription() {
+    _scrollSubscription?.cancel();
     if (_source == null) {
       _scrollSubscription = window.onScroll.listen(_onScroll);
     } else {
