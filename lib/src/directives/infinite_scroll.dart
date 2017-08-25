@@ -29,6 +29,9 @@ class KlInfinteScroll extends KlContainer implements OnInit, OnDestroy {
 
   KlInfinteScroll(ElementRef elementRef) : super(elementRef);
 
+  @Output('scrollEnd')
+  Stream<Null> get onScrollEnd => _fireScrollEnd.stream;
+
   @override
   void ngOnInit() {
     super.ngOnInit();
