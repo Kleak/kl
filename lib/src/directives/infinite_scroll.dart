@@ -17,7 +17,7 @@ import 'package:kl/src/directives/container.dart';
     'margin',
   ],
 )
-class KlInfinteScroll extends KlContainer implements OnInit, OnDestroy {
+class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   final StreamController<Null> _fireScrollEnd = new StreamController();
   StreamSubscription<Event> _scrollSubscription;
 
@@ -27,7 +27,7 @@ class KlInfinteScroll extends KlContainer implements OnInit, OnDestroy {
   @Input('fireEvent')
   bool fireEvent = true;
 
-  KlInfinteScroll(ElementRef elementRef) : super(elementRef);
+  KlInfiniteScroll(ElementRef elementRef) : super(elementRef);
 
   @Output('scrollEnd')
   Stream<Null> get onScrollEnd => _fireScrollEnd.stream;
