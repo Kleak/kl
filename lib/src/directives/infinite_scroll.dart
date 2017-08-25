@@ -20,20 +20,28 @@ import 'package:kl/src/directives/container.dart';
 class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   final StreamController<Null> _fireScrollEnd = new StreamController();
   StreamSubscription<Event> _scrollSubscription;
+  Element _source;
 
   @Input('threshold')
   int threshold = 80;
 
   @Input('disabled')
-  bool fireEvent = false;
+  bool disabled = false;
 
   @Input('source')
   set source(Element s) {
-    _scrollSubscription.cancel();
-    _scrollSubscription = s.onScroll.listen(_onScroll);
+    _source = s;
+    _scrollSubscription?.cancel();
+    if (s == null) {
+      _scrollSubscription = window.onScroll.listen(_onScroll);
+    } else {
+      _scrollSubscription = s.onScroll.listen(_onScroll);
+    }
   }
 
-  KlInfiniteScroll(ElementRef elementRef) : super(elementRef);
+  KlInfiniteScroll(ElementRef elementRef) : super(elementRef) {
+    window.onScroll.listen(_onScroll);
+  }
 
   @Output('scrollEnd')
   Stream<Null> get onScrollEnd => _fireScrollEnd.stream;
@@ -41,7 +49,6 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   @override
   void ngOnInit() {
     super.ngOnInit();
-    _scrollSubscription = window.onScroll.listen(_onScroll);
   }
 
   @override
@@ -51,13 +58,20 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   }
 
   void _onScroll(Event event) {
-    if (!fireEvent) {
-      final alreadyScrolled =
-          ((window.scrollY + document.body.clientHeight) * 100) /
-              document.documentElement.scrollHeight;
+    if (!disabled) {
+      final alreadyScrolled = _alreadyScrolled();
       if (alreadyScrolled > threshold) {
         _fireScrollEnd.add(null);
       }
+    }
+  }
+
+  num _alreadyScrolled() {
+    if (_source == null) {
+      return ((window.scrollY + document.body.clientHeight) * 100) /
+          document.documentElement.scrollHeight;
+    } else {
+      return (_source.scrollTop * 100) / _source.scrollHeight;
     }
   }
 }
