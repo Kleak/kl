@@ -27,6 +27,12 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   @Input('disabled')
   bool fireEvent = false;
 
+  @Input('source')
+  set source(Element s) {
+    _scrollSubscription.cancel();
+    _scrollSubscription = s.onScroll.listen(_onScroll);
+  }
+
   KlInfiniteScroll(ElementRef elementRef) : super(elementRef);
 
   @Output('scrollEnd')
