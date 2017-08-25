@@ -22,7 +22,7 @@ class KlInfinteScroll extends KlContainer implements OnInit, OnDestroy {
   StreamSubscription<Event> _scrollSubscription;
 
   @Input('threshold')
-  int threshold;
+  int threshold = 80;
 
   @Input('fireEvent')
   bool fireEvent = true;
