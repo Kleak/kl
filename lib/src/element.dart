@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 
 class KlElement {
   final ElementRef elementRef;

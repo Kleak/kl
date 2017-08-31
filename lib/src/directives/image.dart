@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 import 'package:kl/src/directives/box.dart';
 import 'package:http/browser_client.dart' as http;
 import 'package:http/http.dart' as http;

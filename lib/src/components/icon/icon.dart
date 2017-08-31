@@ -1,5 +1,5 @@
-import 'package:angular2/angular2.dart';
-import 'package:angular2/security.dart';
+import 'package:angular/angular.dart';
+import 'package:angular/security.dart';
 import 'package:kl/src/align_item.dart';
 import 'package:kl/src/color.dart';
 import 'package:kl/src/directives/row.dart';
