@@ -1,3 +1,5 @@
+library kl.icon;
+
 class Icon {
   final String type;
   final String data;
@@ -5,7 +7,11 @@ class Icon {
   final String defaultWidth;
   final String defaultHeight;
 
-  const Icon(this.data, {this.type: 'data:image/svg+xml;,', this.viewBox, this.defaultHeight, this.defaultWidth});
+  const Icon(this.data,
+      {this.type: 'data:image/svg+xml;,',
+      this.viewBox,
+      this.defaultHeight,
+      this.defaultWidth});
 
   String toImage() => "$type$data";
 }

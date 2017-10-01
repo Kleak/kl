@@ -1,6 +1,9 @@
+library kl.components.select_base;
+
 import 'dart:async';
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:kl/src/exception.dart';
 
 class KlSelectItem {
   final String id;
@@ -12,10 +15,49 @@ class KlSelectItem {
   String toString() => "$id $value";
 }
 
-enum KlSelectType {
+enum _KlSelectType {
   none,
   onlyOne,
   multiple,
+}
+
+class KlSelectType {
+  static const KlSelectType none = const KlSelectType._(_KlSelectType.none);
+  static const KlSelectType onlyOne =
+      const KlSelectType._(_KlSelectType.onlyOne);
+  static const KlSelectType multiple =
+      const KlSelectType._(_KlSelectType.multiple);
+
+  final _KlSelectType type;
+
+  const KlSelectType._(this.type);
+
+  static KlSelectType fromString(String value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'none':
+        return KlSelectType.none;
+      case 'onlyOne':
+        return KlSelectType.onlyOne;
+      case 'multiple':
+        return KlSelectType.multiple;
+      default:
+        return KlSelectType.none;
+    }
+  }
+
+  static KlSelectType from(/*String|KlSelectType*/ value) {
+    if (value != null && value is! String && value is! KlSelectType) {
+      throw new KlTypeValueException(
+          value, 'selectType', [String, KlSelectType]);
+    }
+    if (value is String) {
+      return KlSelectType.fromString(value);
+    }
+    return value;
+  }
 }
 
 @Component(
@@ -31,8 +73,8 @@ class KlSelectBase implements OnDestroy {
   StreamController<KlSelectItem> onSelectItemController;
 
   @Input('type')
-  set type(KlSelectType type) {
-    _type = type ?? _type;
+  set type(/*String|KlSelectType*/ value) {
+    _type = KlSelectType.from(value) ?? _type;
     if (type != null) {
       _changeDetectorRef.markForCheck();
     }
@@ -59,8 +101,11 @@ class KlSelectBase implements OnDestroy {
   }
 
   bool get isNone => _type == KlSelectType.none;
+
   List<KlSelectItem> get items => _items;
+
   List<KlSelectItem> get selectedItems => _selectedItems;
+
   KlSelectType get type => _type;
 
   @Output('selectItem')

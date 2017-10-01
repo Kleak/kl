@@ -1,32 +1,22 @@
+library kl.directives.infinite_scroll;
+
 import 'dart:async';
 import 'dart:html';
 
 import 'package:angular/angular.dart';
 import 'package:kl/src/directives/container.dart';
 
-@Directive(
-  selector: 'kl-infinite-scroll',
-  inputs: const [
-    'alignItems',
-    'flexWrap',
-    'justifyContent',
-    'direction',
-    'constraint',
-    'decoration',
-    'padding',
-    'margin',
-  ],
-)
+@Directive(selector: 'kl-infinite-scroll, [kl-infinity-scroll]')
 class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
   final StreamController<Null> _scrollEndController = new StreamController();
   StreamSubscription<Event> _scrollSubscription;
   Element _source;
   bool _disabled = false;
 
-  @Input('threshold')
+  @Input()
   int threshold = 80;
 
-  @Input('disabled')
+  @Input()
   set disabled(bool d) {
     _disabled = d;
     if (_disabled) {
@@ -36,7 +26,7 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
     }
   }
 
-  @Input('source')
+  @Input()
   set source(Element s) {
     _source = s;
     _setScrollSubscription();
@@ -46,7 +36,7 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
     _scrollSubscription = window.onScroll.listen(_onScroll);
   }
 
-  @Output('scrollEnd')
+  @Output('scroll-end')
   Stream<Null> get onScrollEnd => _scrollEndController.stream;
 
   @override

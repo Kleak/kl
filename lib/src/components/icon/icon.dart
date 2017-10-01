@@ -1,3 +1,5 @@
+library kl.components.icon;
+
 import 'package:angular/angular.dart';
 import 'package:angular/security.dart';
 import 'package:kl/src/align_item.dart';
@@ -16,7 +18,7 @@ import 'package:kl/src/justify_content.dart';
     'padding',
     'margin',
     'constraint',
-    'justifyContent',
+    'justify-content',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
