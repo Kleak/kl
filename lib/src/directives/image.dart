@@ -9,19 +9,19 @@ import 'package:kl/src/object_fit.dart';
 @Directive(selector: 'kl-image, [kl-image]')
 class KlImage extends KlBox {
   String _src;
+  String _defaultImage;
+  String _currentSrc;
   KlObjectFit _objectFit;
-  String _defaultImageData;
 
   @Input()
   set defaultImage(String value) {
-    _defaultImageData = value ?? _defaultImageData;
-    _updateImg();
+    _defaultImage = value ?? _defaultImage;
   }
 
   @Input('source')
   set src(String value) {
-    _src = value ?? _src;
-    _updateImg();
+    _src = value ?? _src ?? _defaultImage;
+    _updateImg(_src);
   }
 
   @Input()
@@ -32,8 +32,8 @@ class KlImage extends KlBox {
 
   KlImage(ElementRef elementRef) : super(elementRef);
 
-  _updateImg() {
-    final source = _src ?? _defaultImageData;
+  _updateImg(String source) {
+    _currentSrc = source;
     if (source != null) {
       if (element is ImageElement) {
         (element as ImageElement).src = source;
@@ -42,11 +42,17 @@ class KlImage extends KlBox {
         if (element.style.display.isEmpty) {
           element.style.display = KlDisplay.block.toStyle();
         }
-        print("[${element.style.height}]");
         if (element.style.height.isEmpty) {
           element.style.height == "100%";
         }
       }
+    }
+  }
+
+  @HostListener('error')
+  onLoadImageError() {
+    if (_currentSrc != _defaultImage && _defaultImage != null) {
+      _updateImg(_defaultImage);
     }
   }
 }

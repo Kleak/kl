@@ -81,7 +81,6 @@ main() {
           KlDisplay.from(10);
         } catch (e) {
           expect(e is KlTypeValueException, isTrue);
-          print(e);
         }
       });
     });

@@ -1,5 +1,6 @@
 library kl.text_style.test;
 
+import 'package:kl/src/exception.dart';
 import 'package:test/test.dart';
 import 'package:kl/src/text_style.dart';
 
@@ -45,29 +46,28 @@ main() {
         });
       });
       group('from', () {
-        /* test('String', () {
-          final display = KlTextAlign.from('fixed');
-          expect(display.toStyle(), equals('fixed'));
+        test('String', () {
+          final align = KlTextAlign.from('center');
+          expect(align.toStyle(), equals('center'));
         });
 
-        test('KlDisplay', () {
-          final display = KlDisplay.from(KlDisplay.fixed);
-          expect(display.toStyle(), equals('fixed'));
+        test('KlTextAlign', () {
+          final align = KlTextAlign.from(KlTextAlign.center);
+          expect(align.toStyle(), equals('center'));
         });
 
         test('null', () {
-          final display = KlDisplay.from(null);
-          expect(display, isNull);
+          final align = KlTextAlign.from(null);
+          expect(align, isNull);
         });
 
         test('wrong type', () {
           try {
-            KlDisplay.from(10);
+            KlTextAlign.from(10);
           } catch (e) {
             expect(e is KlTypeValueException, isTrue);
-            print(e);
           }
-        });*/
+        });
       });
     });
   });

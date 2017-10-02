@@ -72,7 +72,7 @@ class KlSelectBase implements OnDestroy {
 
   StreamController<KlSelectItem> onSelectItemController;
 
-  @Input('type')
+  @Input()
   set type(/*String|KlSelectType*/ value) {
     _type = KlSelectType.from(value) ?? _type;
     if (type != null) {
@@ -80,7 +80,7 @@ class KlSelectBase implements OnDestroy {
     }
   }
 
-  @Input('items')
+  @Input()
   set items(List<KlSelectItem> items) {
     _items = items ?? _items;
     if (items != null) {
@@ -88,7 +88,7 @@ class KlSelectBase implements OnDestroy {
     }
   }
 
-  @Input('selectedItems')
+  @Input()
   set selectedItems(List<KlSelectItem> selectedItems) {
     _selectedItems = selectedItems ?? _selectedItems;
     if (selectedItems != null) {

@@ -7,7 +7,7 @@ import 'package:angular/angular.dart';
 import 'package:kl/src/directives/container.dart';
 
 @Directive(selector: 'kl-infinite-scroll, [kl-infinity-scroll]')
-class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
+class KlInfiniteScroll extends KlContainer implements OnDestroy {
   final StreamController<Null> _scrollEndController = new StreamController();
   StreamSubscription<Event> _scrollSubscription;
   Element _source;
@@ -36,13 +36,8 @@ class KlInfiniteScroll extends KlContainer implements OnInit, OnDestroy {
     _scrollSubscription = window.onScroll.listen(_onScroll);
   }
 
-  @Output('scroll-end')
+  @Output('scrollEnd')
   Stream<Null> get onScrollEnd => _scrollEndController.stream;
-
-  @override
-  void ngOnInit() {
-    super.ngOnInit();
-  }
 
   @override
   void ngOnDestroy() {
