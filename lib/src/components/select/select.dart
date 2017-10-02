@@ -1,3 +1,5 @@
+library kl.components.select;
+
 import 'package:angular/angular.dart';
 import 'package:kl/src/directives/column.dart';
 

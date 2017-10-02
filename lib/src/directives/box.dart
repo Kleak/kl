@@ -1,3 +1,5 @@
+library kl.directives.box;
+
 import 'package:angular/angular.dart';
 import 'package:kl/src/constraint.dart';
 import 'package:kl/src/decoration.dart';
@@ -5,7 +7,7 @@ import 'package:kl/src/display.dart';
 import 'package:kl/src/edge_insets.dart';
 import 'package:kl/src/element.dart';
 
-@Directive(selector: 'kl-box')
+@Directive(selector: 'kl-box, [kl-box]')
 class KlBox extends KlElement {
   KlConstraint _constraint;
   KlDecoration _decoration;
@@ -13,13 +15,13 @@ class KlBox extends KlElement {
   KlEdgeInsets _margin;
   KlDisplay _display;
 
-  @Input('display')
-  set display(KlDisplay value) {
-    _display = value ?? _display;
+  @Input()
+  set display(/*String|KlDisplay*/ value) {
+    _display = KlDisplay.from(value) ?? _display;
     element.style.display = _display?.toStyle();
   }
 
-  @Input('constraint')
+  @Input()
   set constraint(KlConstraint value) {
     _constraint = value ?? _constraint;
     element.style
@@ -31,7 +33,7 @@ class KlBox extends KlElement {
       ..maxHeight = _constraint?.maxHeight;
   }
 
-  @Input('decoration')
+  @Input()
   set decoration(KlDecoration value) {
     _decoration = value ?? _decoration;
     element.style
@@ -44,13 +46,13 @@ class KlBox extends KlElement {
       ..borderLeft = _decoration?.border?.left?.toStyle();
   }
 
-  @Input('padding')
+  @Input()
   set padding(KlEdgeInsets value) {
     _padding = value ?? _padding;
     element.style.padding = _padding?.toStyle();
   }
 
-  @Input('margin')
+  @Input()
   set margin(KlEdgeInsets value) {
     _margin = value ?? _margin;
     element.style.margin = _margin?.toStyle();

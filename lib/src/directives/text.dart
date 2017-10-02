@@ -1,12 +1,11 @@
+library kl.directives.text;
+
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:kl/src/directives/box.dart';
 import 'package:kl/src/text_style.dart';
 
-@Directive(
-  selector: 'kl-text,[kl-text]',
-  inputs: const ['constraint', 'decoration', 'padding', 'margin', 'display'],
-)
+@Directive(selector: 'kl-text,[kl-text]')
 class KlText extends KlBox {
   static double getTextWidth(KlTextStyle textStyle, String text) {
     final canvas = new CanvasElement();
@@ -18,7 +17,7 @@ class KlText extends KlBox {
 
   KlTextStyle _textStyle;
 
-  @Input('textStyle')
+  @Input()
   set textStyle(KlTextStyle value) {
     _textStyle = value ?? _textStyle;
     element.style

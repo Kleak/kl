@@ -1,3 +1,5 @@
+library kl.edge_insets;
+
 class KlEdgeInsets {
   final num top;
   final num right;
@@ -18,7 +20,8 @@ class KlEdgeInsets {
         right = horizontal,
         left = horizontal;
 
-  const KlEdgeInsets.only({this.top: 0, this.right: 0, this.bottom: 0, this.left: 0});
+  const KlEdgeInsets.only(
+      {this.top: 0, this.right: 0, this.bottom: 0, this.left: 0});
 
   String toStyle() => '${top}px ${right}px ${bottom}px ${left}px';
 }

@@ -1,3 +1,5 @@
+library kl.element;
+
 import 'dart:html';
 import 'package:angular/angular.dart';
 

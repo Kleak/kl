@@ -1,4 +1,7 @@
+library kl.text_style;
+
 import 'package:kl/src/color.dart';
+import 'package:kl/src/exception.dart';
 
 enum _KlTextTransform {
   uppercase,
@@ -23,7 +26,7 @@ class KlTextTransform {
 
   const KlTextTransform._(this.textTransform);
 
-  String get _style {
+  String toStyle() {
     switch (textTransform) {
       case _KlTextTransform.none:
         return 'none';
@@ -36,7 +39,34 @@ class KlTextTransform {
     }
   }
 
-  String toStyle() => _style;
+  static KlTextTransform fromString(String value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'none':
+        return KlTextTransform.none;
+      case 'lowercase':
+        return KlTextTransform.lowercase;
+      case 'uppercase':
+        return KlTextTransform.uppercase;
+      default:
+        return KlTextTransform.none;
+    }
+  }
+
+  static KlTextTransform from(/*String|KlTextTransform*/ value) {
+    if (value != null && value is! String && value is! KlTextTransform) {
+      throw new KlTypeValueException(
+          value, 'textTransform', [String, KlTextTransform]);
+    }
+    if (value is String) {
+      return KlTextTransform.fromString(value);
+    }
+    return value;
+  }
+
+  String toString() => toStyle();
 }
 
 enum _KlTextDecoration {
@@ -54,7 +84,7 @@ class KlTextDecoration {
 
   const KlTextDecoration._(this.textDecoration);
 
-  String get _style {
+  String toStyle() {
     switch (textDecoration) {
       case _KlTextDecoration.none:
         return 'none';
@@ -65,7 +95,32 @@ class KlTextDecoration {
     }
   }
 
-  String toStyle() => _style;
+  static KlTextDecoration fromString(String value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'none':
+        return KlTextDecoration.none;
+      case 'underline':
+        return KlTextDecoration.underline;
+      default:
+        return KlTextDecoration.none;
+    }
+  }
+
+  static KlTextDecoration from(/*String|KlTextDecoration*/ value) {
+    if (value != null && value is! String && value is! KlTextDecoration) {
+      throw new KlTypeValueException(
+          value, 'textDecoration', [String, KlTextDecoration]);
+    }
+    if (value is String) {
+      return KlTextDecoration.fromString(value);
+    }
+    return value;
+  }
+
+  String toString() => toStyle();
 }
 
 enum _KlTextAlign {
@@ -83,7 +138,7 @@ class KlTextAlign {
 
   const KlTextAlign._(this.textAlign);
 
-  String get _style {
+  String toStyle() {
     switch (textAlign) {
       case _KlTextAlign.center:
         return 'center';
@@ -96,7 +151,33 @@ class KlTextAlign {
     }
   }
 
-  String toStyle() => _style;
+  static KlTextAlign fromString(String value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'center':
+        return KlTextAlign.center;
+      case 'left':
+        return KlTextAlign.left;
+      case 'right':
+        return KlTextAlign.right;
+      default:
+        return KlTextAlign.left;
+    }
+  }
+
+  static KlTextAlign from(/*String|KlTextAlign*/ value) {
+    if (value != null && value is! String && value is! KlTextAlign) {
+      throw new KlTypeValueException(value, 'textAlign', [String, KlTextAlign]);
+    }
+    if (value is String) {
+      return KlTextAlign.fromString(value);
+    }
+    return value;
+  }
+
+  String toString() => toStyle();
 }
 
 class KlTextStyle {

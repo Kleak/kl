@@ -1,9 +1,8 @@
-enum _KlDisplay {
-  block,
-  flex,
-  unset,
-  fixed
-}
+library kl.display;
+
+import 'exception.dart';
+
+enum _KlDisplay { block, flex, unset, fixed }
 
 class KlDisplay {
   static const KlDisplay block = const KlDisplay._(_KlDisplay.block);
@@ -15,7 +14,7 @@ class KlDisplay {
 
   const KlDisplay._(this.display);
 
-  String get _style {
+  String toStyle() {
     switch (display) {
       case _KlDisplay.block:
         return 'block';
@@ -30,5 +29,33 @@ class KlDisplay {
     }
   }
 
-  String toStyle() => _style;
+  static KlDisplay fromString(String value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'block':
+        return KlDisplay.block;
+      case 'flex':
+        return KlDisplay.flex;
+      case 'unset':
+        return KlDisplay.unset;
+      case 'fixed':
+        return KlDisplay.fixed;
+      default:
+        return KlDisplay.block;
+    }
+  }
+
+  static KlDisplay from(/*String|KlDisplay*/ value) {
+    if (value != null && value is! String && value is! KlDisplay) {
+      throw new KlTypeValueException(value, 'display', [String, KlDisplay]);
+    }
+    if (value is String) {
+      return KlDisplay.fromString(value);
+    }
+    return value;
+  }
+
+  String toString() => toStyle();
 }
