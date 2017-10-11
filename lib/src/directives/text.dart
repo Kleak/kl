@@ -7,7 +7,7 @@ import 'package:kl/src/text_style.dart';
 
 @Directive(selector: 'kl-text,[kl-text]')
 class KlText extends KlBox {
-  static double getTextWidth(KlTextStyle textStyle, String text) {
+  static num getTextWidth(KlTextStyle textStyle, String text) {
     final canvas = new CanvasElement();
     final ctx = canvas.context2D;
     ctx.font = "${textStyle.fontSize}px ${textStyle.fontFamily}";
