@@ -1,20 +1,27 @@
-library kl.directives.infinite_scroll;
+library al.directives.infinite_scroll;
 
 import 'dart:async';
 import 'dart:html';
 
 import 'package:angular/angular.dart';
-import 'package:kl/src/directives/container.dart';
+import "package:rxdart/transformers.dart";
 
-@Directive(selector: 'kl-infinite-scroll, [kl-infinity-scroll]')
-class KlInfiniteScroll extends KlContainer implements OnDestroy {
-  final StreamController<Null> _scrollEndController = new StreamController();
+@Directive(selector: 'kl-infinite-scroll, [kl-infinite-scroll]')
+class KlInfiniteScroll implements OnDestroy {
+  final _scrollEndController = new StreamController<Event>();
   StreamSubscription<Event> _scrollSubscription;
   Element _source;
   bool _disabled = false;
+  int _threshold = 100;
 
-  @Input()
-  int threshold = 80;
+  @Input("threshold")
+  void set threshold(value) {
+    if (value is int) {
+      _threshold = value;
+    } else if (value is String) {
+      _threshold = int.parse(value);
+    }
+  }
 
   @Input()
   set disabled(bool d) {
@@ -32,8 +39,11 @@ class KlInfiniteScroll extends KlContainer implements OnDestroy {
     _setScrollSubscription();
   }
 
-  KlInfiniteScroll(ElementRef elementRef) : super(elementRef) {
-    _scrollSubscription = window.onScroll.listen(_onScroll);
+  KlInfiniteScroll(ElementRef elementRef) {
+    _scrollSubscription = window.onScroll
+        .transform(
+            new ThrottleStreamTransformer(const Duration(milliseconds: 300)))
+        .listen(_onScroll);
   }
 
   @Output('scrollEnd')
@@ -47,9 +57,9 @@ class KlInfiniteScroll extends KlContainer implements OnDestroy {
 
   void _onScroll(Event event) {
     if (!_disabled) {
-      final alreadyScrolled = _alreadyScrolled();
-      if (alreadyScrolled > threshold) {
-        _scrollEndController.add(null);
+      final beforeEnd = _calculBeforeEnd();
+      if (beforeEnd < _threshold) {
+        _scrollEndController.add(event);
       }
     }
   }
@@ -63,12 +73,8 @@ class KlInfiniteScroll extends KlContainer implements OnDestroy {
     }
   }
 
-  num _alreadyScrolled() {
-    if (_source == null) {
-      return ((window.scrollY + document.body.clientHeight) * 100) /
-          document.documentElement.scrollHeight;
-    } else {
-      return (_source.scrollTop * 100) / _source.scrollHeight;
-    }
+  int _calculBeforeEnd() {
+    final target = _source ?? document.documentElement;
+    return target.scrollHeight - (target.scrollTop + target.clientHeight);
   }
 }
