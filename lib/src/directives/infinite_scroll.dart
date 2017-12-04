@@ -1,4 +1,4 @@
-library al.directives.infinite_scroll;
+library kl.directives.infinite_scroll;
 
 import 'dart:async';
 import 'dart:html';
