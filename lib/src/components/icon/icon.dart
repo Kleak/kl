@@ -31,6 +31,9 @@ class KlIcon extends KlRow implements OnInit {
   @Input()
   KlColor fill;
 
+  @Input()
+  KlColor stroke;
+
   SafeHtml html;
 
   KlIcon(
