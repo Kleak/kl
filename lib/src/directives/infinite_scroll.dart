@@ -7,7 +7,7 @@ import 'package:angular/angular.dart';
 import "package:rxdart/transformers.dart";
 
 @Directive(selector: 'kl-infinite-scroll, [kl-infinite-scroll]')
-class KlInfiniteScroll implements OnDestroy {
+class KlInfiniteScroll implements OnDestroy, OnInit {
   final _scrollEndController = new StreamController<Event>();
   StreamSubscription<Event> _scrollSubscription;
   Element _source;
@@ -39,15 +39,17 @@ class KlInfiniteScroll implements OnDestroy {
     _setScrollSubscription();
   }
 
-  KlInfiniteScroll(ElementRef elementRef) {
-    _scrollSubscription = window.onScroll
-        .transform(
-            new ThrottleStreamTransformer(const Duration(milliseconds: 300)))
-        .listen(_onScroll);
-  }
+  KlInfiniteScroll(ElementRef elementRef);
 
   @Output('scrollEnd')
   Stream<Null> get onScrollEnd => _scrollEndController.stream;
+
+  @override
+  void ngOnInit() {
+    if (_source == null) {
+      _setScrollSubscription();
+    }
+  }
 
   @override
   void ngOnDestroy() {
@@ -66,15 +68,20 @@ class KlInfiniteScroll implements OnDestroy {
 
   void _setScrollSubscription() {
     _scrollSubscription?.cancel();
+    final transformer =
+        new ThrottleStreamTransformer<Event>(const Duration(milliseconds: 300));
+
     if (_source == null) {
-      _scrollSubscription = window.onScroll.listen(_onScroll);
+      _scrollSubscription =
+          window.onScroll.transform(transformer).listen(_onScroll);
     } else {
-      _scrollSubscription = _source.onScroll.listen(_onScroll);
+      _scrollSubscription =
+          _source.onScroll.transform(transformer).listen(_onScroll);
     }
   }
 
   int _calculBeforeEnd() {
-    final target = _source ?? document.documentElement;
+    final target = _source ?? document.scrollingElement;
     return target.scrollHeight - (target.scrollTop + target.clientHeight);
   }
 }
