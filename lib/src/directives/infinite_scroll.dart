@@ -69,7 +69,7 @@ class KlInfiniteScroll implements OnDestroy, OnInit {
   void _setScrollSubscription() {
     _scrollSubscription?.cancel();
     final transformer =
-        new ThrottleStreamTransformer<Event>(const Duration(milliseconds: 300));
+    new DebounceStreamTransformer<Event>(const Duration(milliseconds: 300));
 
     if (_source == null) {
       _scrollSubscription =
