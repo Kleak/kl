@@ -1,5 +1,7 @@
 library kl.components.select;
 
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:kl/src/directives/column.dart';
 
@@ -9,5 +11,5 @@ import 'package:kl/src/directives/column.dart';
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
 class KlSelect extends KlColumn {
-  KlSelect(ElementRef elementRef) : super(elementRef);
+  KlSelect(Element elementRef) : super(elementRef);
 }

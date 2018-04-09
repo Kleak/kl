@@ -1,5 +1,7 @@
 library kl.directives.flexible;
 
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:kl/src/element.dart';
 
@@ -14,5 +16,5 @@ class KlFlexible extends KlElement {
     }
   }
 
-  KlFlexible(ElementRef elementRef) : super(elementRef);
+  KlFlexible(Element elementRef) : super(elementRef);
 }

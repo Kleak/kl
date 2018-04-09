@@ -1,5 +1,7 @@
 library kl.directives.container;
 
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:kl/kl.dart';
 import 'package:kl/src/align_item.dart';
@@ -57,7 +59,7 @@ class KlContainer extends KlBox {
     }
   }
 
-  KlContainer(ElementRef elementRef) : super(elementRef) {
+  KlContainer(Element elementRef) : super(elementRef) {
     display = KlDisplay.flex;
   }
 }

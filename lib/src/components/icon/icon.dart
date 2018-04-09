@@ -1,5 +1,7 @@
 library kl.components.icon;
 
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:angular/security.dart';
 import 'package:kl/src/align_item.dart';
@@ -12,7 +14,7 @@ import 'package:kl/src/justify_content.dart';
   selector: 'kl-icon',
   templateUrl: 'icon.html',
   styleUrls: const ['icon.css'],
-  directives: const <dynamic>[COMMON_DIRECTIVES, SafeInnerHtmlDirective],
+  directives: const <dynamic>[coreDirectives, SafeInnerHtmlDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
 class KlIcon extends KlRow implements OnInit {
@@ -37,7 +39,7 @@ class KlIcon extends KlRow implements OnInit {
   SafeHtml html;
 
   KlIcon(
-      ElementRef elementRef, this._changeDetectorRef, this._domSecurityService)
+      Element elementRef, this._changeDetectorRef, this._domSecurityService)
       : super(elementRef) {
     alignItems = KlAlignItem.center;
     justifyContent = KlJustifyContent.center;

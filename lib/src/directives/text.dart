@@ -30,5 +30,5 @@ class KlText extends KlBox {
       ..textDecoration = _textStyle?.textDecoration?.toStyle();
   }
 
-  KlText(ElementRef elementRef) : super(elementRef);
+  KlText(Element elementRef) : super(elementRef);
 }

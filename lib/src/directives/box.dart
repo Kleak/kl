@@ -1,5 +1,7 @@
 library kl.directives.box;
 
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:kl/src/constraint.dart';
 import 'package:kl/src/decoration.dart';
@@ -58,5 +60,5 @@ class KlBox extends KlElement {
     element.style.margin = _margin?.toStyle();
   }
 
-  KlBox(ElementRef elementRef) : super(elementRef);
+  KlBox(Element elementRef) : super(elementRef);
 }

@@ -30,7 +30,7 @@ class KlImage extends KlBox {
     element.style.objectFit = _objectFit?.toStyle();
   }
 
-  KlImage(ElementRef elementRef) : super(elementRef);
+  KlImage(Element elementRef) : super(elementRef);
 
   _updateImg(String source) {
     _currentSrc = source;

@@ -39,7 +39,7 @@ class KlInfiniteScroll implements OnDestroy, OnInit {
     _setScrollSubscription();
   }
 
-  KlInfiniteScroll(ElementRef elementRef);
+  KlInfiniteScroll(Element elementRef);
 
   @Output('scrollEnd')
   Stream<Null> get onScrollEnd => _scrollEndController.stream;
