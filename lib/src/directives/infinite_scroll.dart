@@ -42,7 +42,7 @@ class KlInfiniteScroll implements OnDestroy, OnInit {
   KlInfiniteScroll(Element elementRef);
 
   @Output('scrollEnd')
-  Stream<Null> get onScrollEnd => _scrollEndController.stream;
+  Stream<Event> get onScrollEnd => _scrollEndController.stream;
 
   @override
   void ngOnInit() {
@@ -69,7 +69,7 @@ class KlInfiniteScroll implements OnDestroy, OnInit {
   void _setScrollSubscription() {
     _scrollSubscription?.cancel();
     final transformer =
-    new DebounceStreamTransformer<Event>(const Duration(milliseconds: 300));
+        new DebounceStreamTransformer<Event>(const Duration(milliseconds: 300));
 
     if (_source == null) {
       _scrollSubscription =
