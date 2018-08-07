@@ -5,9 +5,9 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:kl/src/exception.dart';
 
-class KlSelectItem {
+class KlSelectItem<Value> {
   final String id;
-  final String value;
+  final Value value;
 
   const KlSelectItem(this.id, this.value);
 
