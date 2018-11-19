@@ -81,7 +81,11 @@ class KlInfiniteScroll implements OnDestroy, OnInit {
   }
 
   int _calculBeforeEnd() {
-    final target = _source ?? document.scrollingElement;
+    final target =
+        _source ?? document.scrollingElement ?? document.documentElement;
+    if (target == null) {
+      return _threshold;
+    }
     return target.scrollHeight - (target.scrollTop + target.clientHeight);
   }
 }
