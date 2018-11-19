@@ -1,6 +1,8 @@
 name: kl
 description: Basic directive for layout in angular dart
 version: 1.0.0
+author: Kevin Segaud <segaud.kevin@gmail.com>
+homepage: https://github.com/Kleak/kl
 
 environment:
   sdk: '>=2.0.0 <3.0.0'
