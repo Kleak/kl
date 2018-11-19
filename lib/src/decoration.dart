@@ -1,3 +1,5 @@
+library kl.decoration;
+
 import 'package:kl/src/border.dart';
 import 'package:kl/src/color.dart';
 

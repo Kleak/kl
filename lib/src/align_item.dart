@@ -1,3 +1,7 @@
+library kl.align_item;
+
+import 'package:kl/src/exception.dart';
+
 enum _KlAlignItem {
   start,
   end,
@@ -34,4 +38,37 @@ class KlAlignItem {
         return 'start';
     }
   }
+
+  static KlAlignItem fromString(String value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'start':
+        return KlAlignItem.start;
+      case 'end':
+        return KlAlignItem.end;
+      case 'baseline':
+        return KlAlignItem.baseline;
+      case 'stretch':
+        return KlAlignItem.stretch;
+      case 'center':
+        return KlAlignItem.center;
+      default:
+        return KlAlignItem.start;
+    }
+  }
+
+  static KlAlignItem from(/*String|KlAlignItem*/ value) {
+    if (value != null && value is! String && value is! KlAlignItem) {
+      throw new KlTypeValueException(
+          value, 'alignItems', [String, KlAlignItem]);
+    }
+    if (value is String) {
+      return KlAlignItem.fromString(value);
+    }
+    return value;
+  }
+
+  String toString() => toStyle();
 }

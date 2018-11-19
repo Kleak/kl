@@ -1,5 +1,9 @@
-import 'package:angular2/angular2.dart';
-import 'package:angular2/security.dart';
+library kl.components.icon;
+
+import 'dart:html';
+
+import 'package:angular/angular.dart';
+import 'package:angular/security.dart';
 import 'package:kl/src/align_item.dart';
 import 'package:kl/src/color.dart';
 import 'package:kl/src/directives/row.dart';
@@ -10,36 +14,32 @@ import 'package:kl/src/justify_content.dart';
   selector: 'kl-icon',
   templateUrl: 'icon.html',
   styleUrls: const ['icon.css'],
-  directives: const <dynamic>[COMMON_DIRECTIVES, SafeInnerHtmlDirective],
-  inputs: const [
-    'decoration',
-    'padding',
-    'margin',
-    'constraint',
-    'justifyContent',
-  ],
+  directives: const <dynamic>[coreDirectives, SafeInnerHtmlDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
 class KlIcon extends KlRow implements OnInit {
   final ChangeDetectorRef _changeDetectorRef;
   final DomSanitizationService _domSecurityService;
 
-  @Input('icon')
+  @Input()
   Icon icon;
 
-  @Input('width')
+  @Input()
   String width;
 
-  @Input('height')
+  @Input()
   String height;
 
-  @Input('fill')
+  @Input()
   KlColor fill;
+
+  @Input()
+  KlColor stroke;
 
   SafeHtml html;
 
   KlIcon(
-      ElementRef elementRef, this._changeDetectorRef, this._domSecurityService)
+      Element elementRef, this._changeDetectorRef, this._domSecurityService)
       : super(elementRef) {
     alignItems = KlAlignItem.center;
     justifyContent = KlJustifyContent.center;
@@ -47,7 +47,6 @@ class KlIcon extends KlRow implements OnInit {
 
   @override
   void ngOnInit() {
-    super.ngOnInit();
     if (icon != null) {
       html = _domSecurityService.bypassSecurityTrustHtml(icon.data);
       if (width == null) {

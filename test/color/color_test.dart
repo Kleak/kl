@@ -1,3 +1,5 @@
+library kl.color.test;
+
 import 'package:kl/src/color.dart';
 import 'package:test/test.dart';
 

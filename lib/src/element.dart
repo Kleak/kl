@@ -1,10 +1,11 @@
+library kl.element;
+
 import 'dart:html';
-import 'package:angular2/angular2.dart';
 
 class KlElement {
-  final ElementRef elementRef;
+  final Element elementRef;
 
   KlElement(this.elementRef);
 
-  HtmlElement get element => elementRef.nativeElement;
+  HtmlElement get element => elementRef;
 }

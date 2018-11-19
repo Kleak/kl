@@ -1,3 +1,5 @@
+library kl.color;
+
 class KlColor {
   final int red;
   final int green;
