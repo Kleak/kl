@@ -68,15 +68,15 @@ class KlInfiniteScroll implements OnDestroy, OnInit {
 
   void _setScrollSubscription() {
     _scrollSubscription?.cancel();
-    final transformer =
-        new DebounceStreamTransformer<Event>(const Duration(milliseconds: 300));
+    final transformer = new DebounceStreamTransformer<WheelEvent>(
+        const Duration(milliseconds: 300));
 
     if (_source == null) {
       _scrollSubscription =
-          window.onScroll.transform(transformer).listen(_onScroll);
+          window.onWheel.transform(transformer).listen(_onScroll);
     } else {
       _scrollSubscription =
-          _source.onScroll.transform(transformer).listen(_onScroll);
+          _source.onWheel.transform(transformer).listen(_onScroll);
     }
   }
 
